@@ -9,9 +9,9 @@ export const HNStoriesDisplay = (props: Props ) => {
   
   const { stories } = props;
 
-  if (stories.length === 0) {
-    return <div>Loading...</div>;
-  }
+  // if (stories.length === 0) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>

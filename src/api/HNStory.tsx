@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 export interface HNStory {
   by: string;
@@ -12,20 +12,24 @@ export interface HNStory {
   url: string;
 }
 
-export const StoriesFeed = () => {
-    const [story, setStories] = React.useState<HNStory[]>([]);
+export const useFetch = () => {
+    const [story, setStories] = useState<HNStory[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<any>(false); // how to type this error?
 
-    React.useEffect(() => {
+    useEffect(() => {
         async function getTopStories() {
           const url = "https://hacker-news.firebaseio.com/v0/topstories.json";
           try {
+            await setLoading(true);
+            await setError(false);
             const res = await fetch(url);
             if (res.ok === false) {
-              throw new Error("Response Error:" + res.text);
+              setError("Response Error:" + res.text);
             }
             const data: number[] = await res.json();
             const promises = data
-              .slice(0, 10)
+              .slice(0, 100)
               .map((id) =>
                 fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
                   response => response.json()
@@ -33,13 +37,14 @@ export const StoriesFeed = () => {
               );
             const result: HNStory[] = await Promise.all(promises);
             setStories(result);
+            setLoading(false);
           } catch (err) {
-            console.error(err);
+            setError(err);
           }
         }
         console.log('stories', story)
         getTopStories();
       }, [story]);
 
-      return story
+      return { loading, error, story }
 }

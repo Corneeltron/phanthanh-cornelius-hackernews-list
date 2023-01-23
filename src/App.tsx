@@ -1,14 +1,38 @@
-import React from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import './App.css';
 import { HNStoriesDisplay } from './components/HNStoriesDisplay';
-import { StoriesFeed } from './api/HNStory';
+import { useFetch } from './api/HNStory';
+import { Pagination } from './components/Pagination';
 
 function App() {
-  const stories = StoriesFeed();
+  const { loading, error, story } = useFetch();
+  const [currentPage, setCurrentPage] = useState(1);
+  // const loader = useRef(null);
+
+  // const handleObserver = useCallback((pages: any[]) => {
+  //   const target = pages[0];
+  //   if (target.isIntersecting) {
+  //     setPage((prev) => prev + 1);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const option = {
+  //     root: null,
+  //     rootMargin: "20px",
+  //     threshold: 0
+  //   };
+  //   const observer = new IntersectionObserver(handleObserver, option);
+  //   if (loader.current) observer.observe(loader.current);
+  // }, [handleObserver]);
+
   return (
-    <div className="App">
+    <div className="container">
       <h1>HackerNews Top 100 Posts</h1>
-      <HNStoriesDisplay stories={stories} />
+      <HNStoriesDisplay stories={story} />
+      {loading && <p>Loading...</p>}
+      {error && <p>Error!</p>}
+      <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </div>
   );
 }
