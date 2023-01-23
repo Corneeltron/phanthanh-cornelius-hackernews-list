@@ -1,12 +1,13 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
-import './App.css';
-import { HNStoriesDisplay } from './components/HNStoriesDisplay';
-import { useFetch } from './api/HNStory';
-import { Pagination } from './components/Pagination';
+import { useState, useRef, useEffect, useCallback } from "react";
+import "./App.css";
+import { HNStoriesDisplay } from "./components/HNStoriesDisplay";
+import { useFetch } from "./api/HNStory";
+import { Pagination } from "./components/Pagination";
 
 function App() {
   const { loading, error, story } = useFetch();
   const [currentPage, setCurrentPage] = useState(1);
+  const lastPage = 20;
   // const loader = useRef(null);
 
   // const handleObserver = useCallback((pages: any[]) => {
@@ -32,7 +33,12 @@ function App() {
       <HNStoriesDisplay stories={story} />
       {loading && <p>Loading...</p>}
       {error && <p>Error!</p>}
-      <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+      <Pagination
+        lastPage={lastPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        maxLength={7}
+      />
     </div>
   );
 }
