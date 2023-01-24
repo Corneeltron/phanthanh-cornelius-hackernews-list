@@ -1,15 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import { HNStoriesDisplay } from "./components/HNStoriesDisplay";
-import { useFetch } from "./api/HNStory";
 import { Pagination } from "./components/Pagination";
 import { Spinner } from "./components/Spinner";
+import { HNStoriesDisplay } from "./components/HNStoriesDisplay";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [topStoriesIds, setTopStoriesIds] = useState<number[]>([]);
+  const [topStoriesLength, setTopStoriesLength] = useState<number[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | boolean>(false); // how to type this error?
   const pageSize = 25;
-  const { loading, error, story } = useFetch(currentPage, pageSize);
-  const lastPage = Math.ceil(story.length / pageSize);
+  const lastPage = Math.ceil(topStoriesLength.length / pageSize);
+
+  const pageIdPosts = (
+    topStoriesIds: number[],
+    pageNumber: number,
+    pageSize: number
+  ) => {
+    const startIndex = (pageNumber - 1) * pageSize;
+    return topStoriesIds.slice(startIndex, startIndex + pageSize);
+  };
+
+  useEffect(() => {
+    async function getTopStoriesIds() {
+      const url = "https://hacker-news.firebaseio.com/v0/topstories.json";
+      try {
+        await setLoading(true);
+        await setError(false);
+        const res = await fetch(url);
+        if (res.ok === false) {
+          setError("Response Error:" + res.text);
+        }
+        const data = await res.json();
+        setTopStoriesLength(data);
+        const slicedData = await pageIdPosts(data, currentPage, pageSize);
+        setTopStoriesIds(slicedData);
+        setLoading(false);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(JSON.stringify(err))
+        }
+      }
+    }
+    getTopStoriesIds();
+  }, [currentPage]);
 
   return (
     <>
@@ -20,21 +57,20 @@ function App() {
             target="_blank"
             href="http://www.ycombinator.com/"
             rel="noreferrer"
-            >
+          >
             <img
               src="https://news.ycombinator.com/y18.gif"
               alt="Y-combinator icon"
-              />
+            />
           </a>
-              <h1>Hacker News</h1>
+          <h1>Hacker News</h1>
         </header>
         <div className="body">
-          <HNStoriesDisplay
-            pageSize={pageSize}
-            currentPage={currentPage}
-            stories={story}
-          />
           {loading && <Spinner />}
+          <HNStoriesDisplay
+            topStoriesIds={topStoriesIds}
+            currentPage={currentPage}
+          />
           {error && <p>Error!</p>}
         </div>
       </div>

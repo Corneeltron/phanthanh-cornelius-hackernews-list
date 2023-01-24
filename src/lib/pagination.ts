@@ -1,4 +1,4 @@
-import { HNStory } from "../api/HNStory";
+import { HNStory } from "../components/HNStory";
 
 export const getPaginationItems = (
   currentPage: number,
@@ -25,7 +25,7 @@ export const getPaginationItems = (
       for (let j = firstPage; j <= firstPage + sideLength; j++) {
         res.push(j);
       }
-      res.push(NaN) // pushing in NaN as opposed to an ellipses in order to keep the array typed as an array
+      res.push(NaN)
 
       for (let k = lastPage - sideLength; k <= lastPage; k++) {
         res.push(k);
