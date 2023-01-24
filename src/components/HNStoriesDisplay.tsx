@@ -8,14 +8,12 @@ interface Props {
 export const HNStoriesDisplay = (props: Props) => {
   const { topStoriesIds, currentPage } = props;
   return (
-    <div>
-      <ol>
-        {topStoriesIds.map((storyId) => (
-          <li key={storyId}>
-            <HNStoryPage key={storyId} currentPage={currentPage} id={storyId} />
-          </li>
-        ))}
-      </ol>
-    </div>
+    <ol>
+      {topStoriesIds.map((storyId) => (
+        <li key={storyId}>
+          <HNStoryPage key={storyId} currentPage={currentPage} id={storyId} />
+        </li>
+      ))}
+    </ol>
   );
 };

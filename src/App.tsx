@@ -10,7 +10,7 @@ function App() {
   const [topStoriesLength, setTopStoriesLength] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | boolean>(false); // how to type this error?
-  const pageSize = 25;
+  const pageSize = 20;
   const lastPage = Math.ceil(topStoriesLength.length / pageSize);
 
   const pageIdPosts = (
@@ -49,11 +49,10 @@ function App() {
   }, [currentPage]);
 
   return (
-    <>
-      <div className="container">
+    <div className="container">
+      <div className="stories-container">
         <header className="header">
           <a
-            className="favicon"
             target="_blank"
             href="http://www.ycombinator.com/"
             rel="noreferrer"
@@ -66,12 +65,15 @@ function App() {
           <h1>Hacker News</h1>
         </header>
         <div className="body">
-          {loading && <Spinner />}
-          <HNStoriesDisplay
-            topStoriesIds={topStoriesIds}
-            currentPage={currentPage}
-          />
-          {error && <p>Error!</p>}
+          {loading ? (
+            <Spinner />
+          ) : (
+            <HNStoriesDisplay
+              topStoriesIds={topStoriesIds}
+              currentPage={currentPage}
+            />
+          )}
+          {error && <p>An error has occurred. Please refresh and try again.</p>}
         </div>
       </div>
       <div className="pagination">
@@ -82,7 +84,7 @@ function App() {
           maxLength={7}
         />
       </div>
-    </>
+    </div>
   );
 }
 

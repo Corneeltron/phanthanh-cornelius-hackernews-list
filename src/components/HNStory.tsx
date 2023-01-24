@@ -33,10 +33,9 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
 
   useEffect(() => {
     async function getStoriesById(id: number) {
-      if (Number.isInteger(id)) {
-      }
+      //error handling in this fetch
       fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((data) => setStoryByIdData(data));
     }
     getStoriesById(id);
