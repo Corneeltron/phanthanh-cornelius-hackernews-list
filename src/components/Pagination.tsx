@@ -1,28 +1,28 @@
-import React from "react";
 import { getPaginationItems } from "../lib/pagination";
 import { PageLink } from "./PageLink";
+import "./Pagination.css";
 
 export type Props = {
   currentPage: number;
   lastPage: number;
   maxLength: number;
-  setCurrentPage: (page: number) => void;
+  onPageChange: (page: number) => void;
 };
 
 export const Pagination = ({
   currentPage,
   lastPage,
   maxLength,
-  setCurrentPage,
+  onPageChange,
 }: Props) => {
   const pageNums = getPaginationItems(currentPage, lastPage, maxLength);
-
   return (
+    
     <nav className="pagination" aria-label="Pagination">
       <PageLink
         href="#"
         disabled={currentPage === 1}
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => onPageChange(currentPage - 1)}
       >
         Previous
       </PageLink>
@@ -32,7 +32,7 @@ export const Pagination = ({
           href="#"
           active={pageNum === currentPage}
           disabled={isNaN(pageNum)}
-          onClick={() => setCurrentPage(pageNum)}
+          onClick={() => onPageChange(pageNum)}
         >
           {!isNaN(pageNum) ? pageNum : '...'}
         </PageLink>
@@ -40,7 +40,7 @@ export const Pagination = ({
       <PageLink
         href="#"
         disabled={currentPage === lastPage}
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() => onPageChange(currentPage + 1)}
       >
         Next
       </PageLink>

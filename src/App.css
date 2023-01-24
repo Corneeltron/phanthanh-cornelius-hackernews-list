@@ -1,6 +1,46 @@
+h1 {
+  font-size: 14px;
+}
+
+img {
+  border: 1px solid #fff;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.header {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  background-color: #ff6600;
+  padding-left: 1em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  width: 80%;
+}
+
 .container {
-  width: "100%";
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: "#ff6600";
   margin: 0 auto;
   padding: 20px 15px;
+}
+
+.body {
+  display: flex;
+  width: 80%;
+  align-self: center;
+  flex-direction: column;
+  background-color: #f6f6f0;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
 }

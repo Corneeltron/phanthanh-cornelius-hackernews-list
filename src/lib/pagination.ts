@@ -1,3 +1,5 @@
+import { HNStory } from "../api/HNStory";
+
 export const getPaginationItems = (
   currentPage: number,
   lastPage: number,
@@ -17,36 +19,22 @@ export const getPaginationItems = (
 
     // ellipsis in the middle
     if (
-      currentPage - firstPage < sideLength ||
-      lastPage - currentPage < sideLength
+      ((currentPage - firstPage) < sideLength) ||
+      ((lastPage - currentPage) < sideLength)
     ) {
       for (let j = firstPage; j <= firstPage + sideLength; j++) {
         res.push(j);
       }
-      res.push(NaN) // pushing in NaN as opposed to an ellipses in order to keep the array typed as a  array
+      res.push(NaN) // pushing in NaN as opposed to an ellipses in order to keep the array typed as an array
 
       for (let k = lastPage - sideLength; k <= lastPage; k++) {
         res.push(k);
       }
     }
-
-    // otherwise ellipses on either side
-    else if (currentPage - firstPage >= minusMaxLength && lastPage - currentPage >= minusMaxLength) {
-      const minusSideLength = sideLength - 1;
-
-      res.push(firstPage);
-      res.push(NaN);
-
-      for (let l = currentPage - minusSideLength; currentPage + minusSideLength; l++) {
-        res.push(l);
-      }
-      res.push(NaN);
-      res.push(lastPage);
-    }
     
     // ellipses not in middle
     else {
-      const isNearFirstPage = currentPage - firstPage < lastPage - currentPage;
+      const isNearFirstPage = (currentPage - firstPage) < (lastPage - currentPage);
       let remainingLength = maxLength;
 
       if (isNearFirstPage) {
@@ -77,3 +65,8 @@ export const getPaginationItems = (
   }
   return res;
 };
+
+export const paginate = (stories: HNStory[], pageNumber: number, pageSize: number) => {
+  const startIndex = (pageNumber - 1) * pageSize;
+  return stories.slice(startIndex, startIndex + pageSize);
+ };
