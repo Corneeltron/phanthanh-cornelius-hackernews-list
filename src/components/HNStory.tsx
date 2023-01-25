@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import "./HNStory.css";
+import { useState, useEffect } from 'react';
+import './HNStory.css';
 
 export interface HNStory {
   by: string;

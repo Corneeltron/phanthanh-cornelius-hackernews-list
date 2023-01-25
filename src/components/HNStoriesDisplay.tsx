@@ -1,4 +1,4 @@
-import { HNStoryPage } from "./HNStory";
+import { HNStoryPage } from './HNStory';
 
 interface Props {
   topStoriesIds: number[];

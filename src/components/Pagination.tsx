@@ -1,6 +1,6 @@
 import { getPaginationItems } from "../lib/pagination";
 import { PageLink } from "./PageLink";
-import "./Pagination.css";
+import './Pagination.css';
 
 export type Props = {
   currentPage: number;
