@@ -9,7 +9,7 @@ function App() {
   const [topStoriesIds, setTopStoriesIds] = useState<number[]>([]);
   const [topStoriesLength, setTopStoriesLength] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | boolean>(false); // how to type this error?
+  const [error, setError] = useState<string | boolean>(false);
   const pageSize = 20;
   const lastPage = Math.ceil(topStoriesLength.length / pageSize);
 

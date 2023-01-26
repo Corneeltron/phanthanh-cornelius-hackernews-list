@@ -30,16 +30,25 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
     type: "story",
     url: "www.ycombinator.com",
   });
+  const [error, setError] = useState<string | boolean>(false)
 
   useEffect(() => {
     async function getStoriesById(id: number) {
-      //error handling in this fetch
-      fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-        .then((res) => res.json())
-        .then((data) => setStoryByIdData(data));
+      try {
+        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+          .then((res) => res.json())
+          .then((data) => setStoryByIdData(data));
+
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(JSON.stringify(err))
+        }
+      }
     }
     getStoriesById(id);
-  }, [currentPage]); // eslint-disable-line
+  }, [currentPage, id]); 
 
   return (
     <div key={storyByIdData.id}>
@@ -56,6 +65,7 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
         >
           {`${storyByIdData.by} `}
         </a>
+        <span className="link-info">{new Date(storyByIdData.time * 1000).getHours()} hours ago </span>
         |
         <a
           target="_blank"
@@ -67,6 +77,7 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
           {`${storyByIdData.descendants} comments`}
         </a>
       </div>
+      {error && <p>An error has occurred loading this story!</p>}
     </div>
   );
 };
