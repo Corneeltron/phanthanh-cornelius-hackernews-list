@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/phanthanh-cornelius-hackernews-list/static/css/main.9d0c2c1c.css",
-    "main.js": "/phanthanh-cornelius-hackernews-list/static/js/main.3dd6b200.js",
+    "main.js": "/phanthanh-cornelius-hackernews-list/static/js/main.c8a5a243.js",
     "index.html": "/phanthanh-cornelius-hackernews-list/index.html",
     "main.9d0c2c1c.css.map": "/phanthanh-cornelius-hackernews-list/static/css/main.9d0c2c1c.css.map",
-    "main.3dd6b200.js.map": "/phanthanh-cornelius-hackernews-list/static/js/main.3dd6b200.js.map"
+    "main.c8a5a243.js.map": "/phanthanh-cornelius-hackernews-list/static/js/main.c8a5a243.js.map"
   },
   "entrypoints": [
     "static/css/main.9d0c2c1c.css",
-    "static/js/main.3dd6b200.js"
+    "static/js/main.c8a5a243.js"
   ]
 }
