@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Pagination 1`] = `
+<nav
+  aria-label="Pagination"
+  className="pagination"
+>
+  <a
+    className="page-link"
+    href="#"
+    onClick={[Function]}
+  >
+    Previous
+  </a>
+  <span
+    className="page-link disabled"
+  >
+    ...
+  </span>
+  <span
+    className="page-link disabled"
+  >
+    Next
+  </span>
+</nav>
+`;

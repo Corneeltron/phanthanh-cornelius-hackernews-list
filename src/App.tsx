@@ -64,7 +64,7 @@ function App() {
           </a>
           <h1>Hacker News</h1>
         </header>
-        <div className="body">
+        <div data-testid="body" className="body">
           {loading ? (
             <Spinner />
           ) : (

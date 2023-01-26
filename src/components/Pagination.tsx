@@ -1,4 +1,4 @@
-import { getPaginationItems } from "../lib/pagination";
+import { getPaginationItems } from "../utils/pagination";
 import { PageLink } from "./PageLink";
 import './Pagination.css';
 

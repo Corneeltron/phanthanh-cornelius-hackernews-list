@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders HNStory 1`] = `
+<div>
+  <a
+    className="links"
+    href="www.ycombinator.com"
+  >
+    title
+  </a>
+  <div
+    className="link-info-container"
+  >
+    <span
+      className="link-info"
+    >
+      0
+       points by 
+    </span>
+    <a
+      className="link-info"
+      href="https://news.ycombinator.com/user?id=default"
+      rel="noreferrer"
+      target="_blank"
+    >
+      default 
+    </a>
+    |
+    <a
+      className="link-info"
+      href="https://news.ycombinator.com/item?id=0"
+      rel="noreferrer"
+      target="_blank"
+    >
+       
+      0 comments
+    </a>
+  </div>
+</div>
+`;

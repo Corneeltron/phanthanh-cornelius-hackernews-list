@@ -12,6 +12,5 @@ test('renders body container', async () => {
   render(<App />);
   const body = screen.getByTestId('body');
   expect(body).toBeInTheDocument();
-  
 });
 
