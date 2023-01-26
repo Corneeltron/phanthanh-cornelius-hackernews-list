@@ -20,7 +20,6 @@ export const Pagination = ({
     
     <nav className="pagination" aria-label="Pagination">
       <PageLink
-        href="#"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
@@ -29,7 +28,7 @@ export const Pagination = ({
       {pageNums.map((pageNum, idx) => (
         <PageLink
           key={idx}
-          href="#"
+
           active={pageNum === currentPage}
           disabled={isNaN(pageNum)}
           onClick={() => onPageChange(pageNum)}
@@ -38,7 +37,6 @@ export const Pagination = ({
         </PageLink>
       ))}
       <PageLink
-        href="#"
         disabled={currentPage === lastPage}
         onClick={() => onPageChange(currentPage + 1)}
       >

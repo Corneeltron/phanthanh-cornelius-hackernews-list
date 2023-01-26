@@ -7,7 +7,6 @@ exports[`renders Pagination 1`] = `
 >
   <a
     className="page-link"
-    href="#"
     onClick={[Function]}
   >
     Previous
