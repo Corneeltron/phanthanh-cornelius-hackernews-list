@@ -52,7 +52,7 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
 
   return (
     <div key={storyByIdData.id}>
-      <a className="links" href={storyByIdData.url}>
+      <a target="_blank" rel="noopener noreferrer" className="links" href={storyByIdData.url}>
         {storyByIdData.title}
       </a>
       <div className="link-info-container">
@@ -60,7 +60,7 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
         <a
           target="_blank"
           href={`https://news.ycombinator.com/user?id=${storyByIdData.by}`}
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="link-info"
         >
           {`${storyByIdData.by} `}
@@ -70,7 +70,7 @@ export const HNStoryPage = ({ id, currentPage }: HNStoryPageProps) => {
         <a
           target="_blank"
           href={`https://news.ycombinator.com/item?id=${storyByIdData.id}`}
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="link-info"
         >
           {" "}
