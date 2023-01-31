@@ -1,5 +1,9 @@
 ## Available Scripts
 
+### `npm install or yarn`
+
+Please run npm install or yarn to install all modules before running.
+
 In the project directory, you can run:
 
 ### `npm start`
